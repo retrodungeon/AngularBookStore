@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    vertical-align: baseline;
+}
+html, body {
+    height: 100%;
+	font: 14px 'font-name';
+}
+.list-group{
+  max-width: 900px;
+  margin: 0 auto;
+}
+/*
+.list-group li{
+  width: 33%;
+  float: left;
+  height: 415px; 
+  border-radius: 4px;
+}
+*/
+
+.list-group li img{
+  text-align: center;
+}

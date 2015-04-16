@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app = 'bookStore'>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>sample text</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body ng-controller = 'storeController as store'>
+ <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item nav nav-pills" ng-repeat="product in store.products">
+        <img ng-src = "{{ product.titleImage }}"/>
+        <h3>
+          {{product.name}}
+          <em class="pull-right">{{ product.price | currency}}</em>
+        </h3>
+        <section class = 'book-comes-here' ng-controller = 'tabController as tab' >       
+           <ul class="nav nav-pills">
+            <li ng-class="{ active:tab.isSet(1) }">
+              <a href="" ng-click="tab.setTab(1)">Description</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(2) }">
+              <a href="" ng-click="tab.setTab(2)">Author</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(3) }">
+              <a href="" ng-click="tab.setTab(3)">Quotes</a>
+            </li>
+          </ul>
+          <div ng-show="tab.isSet(1)">
+            <h4>Name</h4>
+            <blockquote>{{ product.name }}</blockquote>
+            <h4>Description</h4>
+            <blockquote>{{product.description}}</blockquote>
+          </div>
+          <div ng-show="tab.isSet(2)">
+            <h4>Author</h4>
+            <blockquote>{{product.author}}</blockquote>
+            <h4>About him</h4>
+            <blockquote>{{product.authorBio}}</blockquote>
+          </div>
+          <div ng-show="tab.isSet(3)">
+            <ul>
+              <h4>Quotes</h4>
+              <li ng-repeat="quote in product.quotes">
+                <blockquote>
+                  {{quote.body}}
+                  <cite class="clearfix">—{{quote.by}}</cite>
+                </blockquote>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <!-- Image Gallery  -->
+      </div>
+  </div>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src = 'js/app.js'></script>
+</body>
+</html>
